@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasson Widiarta</title>
+    <link href="index.css" rel="stylesheet"></link>
+    <script src="index.js"></script>
+</head>
+<body>
+    <div class="main-container background">
+        <header>
+            <a class="title">Personal site</a>
+            <nav mobile-hidden>
+                <a class="option" onclick="changeOption(this)" id="About-Me" href="index.html">About Me</a>
+                <a class="option" onclick="changeOption(this)" id="Projects" href="projects.html">Projects</a>
+                <a class="option" onclick="changeOption(this)" id="More" href="More.html" selected>More</a>
+            </nav>
+            <button class="burger-btn" desktop-hidden onclick="hamburgerButton()">☰</button>
+        </header>
+        <div class="content-container" id="Projects">
+            <div style="text-align: center;">
+                <p>Also this website is Responsive with pure html, css and javascript</p>
+                <p>Nothing Else.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

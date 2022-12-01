@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasson Widiarta</title>
+    <link href="index.css" rel="stylesheet"></link>
+    <script src="index.js"></script>
+</head>
+<body>
+    <div class="main-container background">
+        <header>
+            <a class="title">Personal site</a>
+            <nav mobile-hidden>
+                <a class="option" onclick="changeOption(this)" id="About-Me" href="index.html" selected>About Me</a>
+                <a class="option" onclick="changeOption(this)" id="Projects" href="projects.html">Projects</a>
+                <a class="option" onclick="changeOption(this)" id="More" href="More.html">More</a>
+            </nav>
+            <button class="burger-btn" desktop-hidden onclick="hamburgerButton()">☰</button>
+        </header>
+        <div class="content-container" id="option-About-Me">
+            <div class="side-container">
+                <div class="category-container grid-x2 grid-y2">
+                    <div class="category" id="Profile" selected onclick="changeCategory(this)">
+                        <img src="src/user.svg">
+                        <p>Profile</p>
+                    </div>
+                    <div class="category" id="Socials" onclick="changeCategory(this)">
+                        <img src="src/share.svg">
+                        <p>Socials</p>
+                    </div>
+                    <div class="category" id="Hobbies" onclick="changeCategory(this)">
+                        <img src="src/game.svg">
+                        <p>Hobbies</p>
+                    </div>
+                    <div class="category" id="Skills" onclick="changeCategory(this)">
+                        <img src="src/skills.svg">
+                        <p>Skills</p>
+                    </div>
+                </div>
+            </div>
+            <div class="side-container" >
+                <div class="category-content" id="content-Profile">
+                    <h2 style="text-align: center;"  >Profile</h2>
+                    <p>My name is Jasson Widiarta. Currently studying at BINUS University in Computer Science Major. </p>
+                    <p>I was born on 9 June 2004. Tech enthuiast and also programmer. Sometimes play music and games in free time.</p>
+                </div>
+                <div class="category-content" id="content-Socials" hidden>
+                    <h2 style="text-align: center;" >Socials</h2>
+                    <div class="social-container">
+                        <img src="src/Instagram.svg">
+                        <div class="social-text">
+                            <h3>Instagram</h3>
+                            <a href="https://www.instagram.com/jasson.09/">jasson.09</a>        
+                        </div>
+                    </div>
+                    <div class="social-container">
+                        <img src="src/github.svg" style="background-color: white; border-radius:50px; padding:5px; margin:5px;">
+                        <div class="social-text">
+                            <h3>Github</h3>
+                            <a href="https://www.github.com/jasson9/">jasson9</a>        
+                        </div>
+                    </div>
+                    <div class="social-container">
+                        <img src="src/LinkedIn.svg">
+                        <div class="social-text">
+                            <h3>LinkedIn</h3>
+                            <a href="https://www.linkedin.com/in/jasson-widiarta/">jasson-widiarta</a>        
+                        </div>
+                    </div>
+                    <div class="social-container">
+                        <img src="src/Discord.svg">
+                        <div class="social-text">
+                            <h3>Discord</h3>
+                            <a>JZ9#4310</a>        
+                        </div>
+                    </div>
+                </div>
+                <div class="category-content" id="content-Hobbies" hidden>
+                    <h2 style="text-align: center;">Hobbies</h2>
+                    <h3>Games</h3>
+                    <p>Sometimes play Casual adventure, FPS and simulation games</p>
+                    <h3>Anime</h3>
+                    <p>Usually watch weekly airing anime on free time.</p>
+                    <h3>Music</h3>
+                    <p>Listening music and playing Keyboard/Electric Piano</p>
+                </div>
+                <div class="category-content" id="content-Skills" hidden>
+                    <h2 style="text-align: center;">Skills</h2>
+                    <h3>Programming</h3>
+                    <p>Experienced in Javascript/Typescript as Fullstack WebDev with framework such as: React, Nextjs, NodeJS and Express.</p>
+                    <p>Also other languages like C/C++, PHP, Python, and C#(Unity GameDev).</p>
+                    <h3>Music</h3>
+                    <p>Music producing and playing keyboard/electric piano</p>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="content-container" id="option-Projects" hidden>
+            <div class="side-container">
+                <div class="category-container grid-x2 grid-y2">
+                    <div class="category" id="Profile" selected onclick="changeCategory(this)">
+                        <img src="src/user.svg">
+                        <p>Profile</p>
+                    </div>
+                    <div class="category" id="Socials" onclick="changeCategory(this)">
+                        <img src="src/share.svg">
+                        <p>Socials</p>
+                    </div>
+                    <div class="category" id="Hobbies" onclick="changeCategory(this)">
+                        <img src="src/game.svg">
+                        <p>Hobbies</p>
+                    </div>
+                    <div class="category" id="Skills" onclick="changeCategory(this)">
+                        <img src="src/skills.svg">
+                        <p>Skills</p>
+                    </div>
+                </div>
+            </div>
+            <div class="side-container" >
+                <div class="category-content-Projects" id="content-Profile">
+                    <h2 style="text-align: center;"  >Profile</h2>
+                    <p>ttdhasdkjahsdkjashdkjashdkasdhkjsdkasdhsadkjsadkjashdk</p>
+                </div>
+                <div class="category-content-Projects" id="content-Socials" hidden>
+                    <h2 style="text-align: center;" >Socials</h2>
+                    <p>ttdhasdkjahsdkjashdkjashdkasdhkjsdkasdhsadkjsadkjashdk</p>
+                </div>
+                <div class="category-content-Projects" id="content-Hobbies" hidden>
+                    <h2 style="text-align: center;">Hobbies</h2>
+                    <h3>Games</h3>
+                    <p>Sometimes play Casual adventure, FPS and simulation games</p>
+                    <h3>Anime</h3>
+                    <p>Usually watch weekly airing anime on free time.</p>
+                    <h3>Music</h3>
+                    <p>Listening music and playing Keyboard/Electric Piano</p>
+                </div>
+                <div class="category-content-Projects" id="content-Skills" hidden>
+                    <h2 style="text-align: center;">Skills</h2>
+                    <h3>Programming</h3>
+                    <p>Experienced in Javascript/Typescript as Fullstack WebDev with framework such as: React, Nextjs, NodeJS and Express.</p>
+                    <p>Also other languages like C/C++, PHP, Python, and C#(Unity GameDev).</p>
+                    <h3>Music</h3>
+                    <p>Music producing and playing keyboard/electric piano</p>
+                </div> -->
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

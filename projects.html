@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasson Widiarta</title>
+    <link href="index.css" rel="stylesheet"></link>
+    <script src="index.js"></script>
+</head>
+<body>
+    <div class="main-container background">
+        <header>
+            <a class="title">Personal site</a>
+            <nav mobile-hidden>
+                <a class="option" onclick="changeOption(this)" id="About-Me" href="index.html">About Me</a>
+                <a class="option" onclick="changeOption(this)" id="Projects" href="projects.html" selected>Projects</a>
+                <a class="option" onclick="changeOption(this)" id="More" href="More.html">More</a>
+            </nav>
+            <button class="burger-btn" desktop-hidden onclick="hamburgerButton()">☰</button>
+        </header>
+        <div class="content-container" id="Projects">
+            <div style="margin: 10px;">
+            <h1 style="text-align: center;">Projects</h1>
+            <a class="project-content-box" href="https://bitmusic.me">
+                <img src="src/bitmusic.png">
+                <div class="project-detail">
+                    <h2 class="resp-h2">Bitmusic</h2>
+                    <p class="resp-p">An alternative website for listening music with no ads. Using Next.js and Material UI</p>
+                </div>
+            </a>
+            <a class="project-content-box" href="/index.html">
+                <img src="src/personalsite.png">
+                <div class="project-detail">
+                    <h2 class="resp-h2">Personal site</h2>
+                    <p class="resp-p">Well it's this website. Using vanilla javascript, html and css</p>
+                </div>
+            </a>
+            <a class="project-content-box" href="https://discord.com/api/oauth2/authorize?client_id=783386554366033960&permissions=2184186176&scope=bot%20applications.commands">
+                <img src="src/Discord.svg">
+                <div class="project-detail">
+                    <h2 class="resp-h2">Jbot</h2>
+                    <p class="resp-p">Jasson discord bot. Not a good name isn't, it?. Discord bot with several features like Music player, dall-e and more(coming soon!). Created with Nodejs and Discord.js</p>
+                </div>
+            </a>
+            <a class="project-content-box" href="">
+                <img src="src/samplefocusdl.png">
+                <div class="project-detail">
+                    <h2 class="resp-h2">Sample Focus Downloader</h2>
+                    <p class="resp-p">A simple desktop app to download audio sample from Sample Focus.</p>
+                </div>
+            </a>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
