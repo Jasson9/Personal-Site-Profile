@@ -58,7 +58,7 @@
             <br/>
 
             <h3>5. What's the password?</h3>
-            <p>To obtain the password we have to do is execute the exploit script. But the script from the exploit-db have a lot syntax error missing some decoding commands so i decide to search github repo for this exploit and found it from <a href="https://github.com/e-renna/CVE-2019-9053">e-renna</a></p>
+            <p>To obtain the password we have to do is execute the exploit script. But the script from the exploit-db have a lot syntax error and missing decoding commands so i decide to search github repo for this exploit and found it from <a href="https://github.com/e-renna/CVE-2019-9053">e-renna</a></p>
             <img class="blog-img" src="/src/blog/simple-ctf/9.png">
             <p>looks like there is the flag for this script: -w for the wordlist -c for option to crack and -u to use the url. the result command is:</p>
             <div class="bash">python3 exploit.py -u http://[TargetIP]/simple -c -w best110.txt</div>
