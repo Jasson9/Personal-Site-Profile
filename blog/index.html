@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasson Widiarta</title>
+    <link href="/index.css" rel="stylesheet"></link>
+    <script src="/index.js"></script>
+</head>
+<body>
+    <div class="main-container background">
+        <header>
+            <a class="title">Personal site</a>
+            <nav mobile-hidden>
+                <a class="option" onclick="changeOption(this)" id="About-Me" href="/index.html" >About Me</a>
+                <a class="option" onclick="changeOption(this)" id="Projects" href="/projects.html">Projects</a>
+                <a class="option" onclick="changeOption(this)" id="More" href="/more.html">More</a>
+                <a class="option" onclick="changeOption(this)" id="Blog" href="/blog"selected>Blog</a>
+            </nav>
+            <button class="burger-btn" desktop-hidden onclick="hamburgerButton()">☰</button>
+        </header>
+        <div class="content-container" id="Blog">
+            <div style="margin: 10px;">
+            <h1 style="text-align: center;">Blog</h1>
+            <a class="project-content-box" href="simple-ctf.html">
+                <img src="/src/blog/simple-ctf/simple-ctf.png">
+                <div class="project-detail">
+                    <h2 class="resp-h2">Simple CTF Writeup</h2>
+                    <p class="resp-p">My writeup on simple CTF challenge</p>
+                    <p class="resp-cat">Cybersecurity/Penetration testing</p>
+                </div>
+            </a>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

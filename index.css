@@ -195,6 +195,11 @@ body{
         flex-wrap: nowrap !important;
         justify-content: start !important;
     }
+
+    .blog-img{
+        width: 95% !important;
+        margin: auto !important;
+    }
 }
 
 
@@ -313,4 +318,44 @@ body{
 
 .resp-p{
     font-size: 1.25em;
+}
+
+.resp-cat{
+    font-size: 1.0em;
+}
+
+.blog-container{
+    margin: 10px;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    display: block;
+    /* align-content: space-between; */
+    overflow-x: hidden;
+}
+
+.blog-img{
+    object-fit: cover;
+    width: 75%;
+    margin: 5px 12.50%;
+}
+
+.blog-container *{
+    text-align: left;
+}
+
+.blog-container a{
+    color:blue;
+}
+
+.text-center{
+    text-align: center !important;
+}
+
+.bash{
+    background-color: rgb(27, 25, 35);
+    padding: 15px;
+    width: 85%;
+    border: 2px solid gray;
+    border-radius: 5px;
 }
