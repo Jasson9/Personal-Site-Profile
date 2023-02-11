@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasson Widiarta</title>
+    <link href="/index.css" rel="stylesheet"></link>
+    <script src="/index.js"></script>
+</head>
+<body>
+    <div class="main-container background">
+        <header>
+            <a class="title">Personal site</a>
+            <nav mobile-hidden>
+                <a class="option" onclick="changeOption(this)" id="About-Me" href="/index.html">About Me</a>
+                <a class="option" onclick="changeOption(this)" id="Projects" href="/projects.html">Projects</a>
+                <a class="option" onclick="changeOption(this)" id="More" href="/more.html">More</a>
+                <a class="option" onclick="changeOption(this)" id="Blog" href="/blog"selected>Blog</a>
+            </nav>
+            <button class="burger-btn" desktop-hidden onclick="hamburgerButton()">☰</button>
+        </header>
+        <div class="content-container blog-container" id="Blog">
+            <h2 class="text-center">Simple CTF Writeup</h2>
+            <a href="https://tryhackme.com/room/easyctf">
+                <img class="blog-img" src="/src/blog/simple-ctf/simple-ctf.png">
+            </a>
+            <p>In this blog i will explain the steps to complete the simple CTF from tryhackme.com. Also this is my first blog and writeup on CTF so i apologize if there any mistake on this writeup. The machine to attack and questions is from this <a href="https://tryhackme.com/room/easyctf">Link</a></p>
+
+            <h3>1. How many services are running under port 1000?</h3>
+            <p>To answer this question simply use nmap to scan the open port and determine the service</p>
+            <p class="bash">nmap -sV [targetIP]</p>
+            <img class="blog-img" src="/src/blog/simple-ctf/1.png">
+            <p>looks like our target has 2 open port under 1000 which is vsftpd(ftp) and apache2 server. above 1000 there is ssh with unusual port 2222. Keep that port in mind.</p>
+
+            <h3>2. What is running on the higher port?</h3>
+            <p>As you can see the only service running on the higher port is ssh.</p>
+
+            <h3>3. What's the CVE you're using against the application??</h3>
+            <p>CVE(Common Vulnerability Exposures) can be simply determine by comparing the services and software version with the CVE cited at sites like exploit-db, cvedetails and etc.</p>
+            <p>From the nmap results above there are a few services that we can look for it's vulnerability. After few minutes googling got no luck on that. But since the apache2 server is up lets take a look on the webpage.</p>
+            <img class="blog-img" src="/src/blog/simple-ctf/2.png">
+            <p>Looks like it's the default apache2 webpage, the robots.txt didn't give us more clue. But there are still possibility the webserver has unknown directory so lets dig it up using DirBuster.</p>
+            <img class="blog-img blog-img-sm" src="/src/blog/simple-ctf/3.png">
+            <p>In this configuration i'm using the medium worlidsts dictionary and the result discover some directories. Some of the files response size is unconvicingly small to investigate(probably because files in php format) so lets see it from browser.</p>
+            <img class="blog-img blog-img-sm" src="/src/blog/simple-ctf/4.png">
+            <p>On the simple/index.php the footer part give us a hint. Apparently it's a CMS called CMS made simple and running on version 2.2.8. Let's search the exploit from the information that we found</p>
+            <img class="blog-img" src="/src/blog/simple-ctf/5.png">
+            <p>From the exploit database there is the vulnerability of this CMS version with CVE number CVE-2019-9053 and this answer the third question</p>
+
+            <h3>4. To what kind of vulnerability is the application vulnerable?</h3>
+            <img class="blog-img" src="/src/blog/simple-ctf/6.png">
+            <p>Judging from the exploit script code it can be confirmed that the vulnerability type is SQL Injection(SQLi) specificaly time based SQL injection, more info about SQL Injection <a href="https://www.acunetix.com/websitesecurity/sql-injection2">Here</a>. The code contains syntax similiar to SQL with TIME variable combined to the payload to determine whether the payload given is correct or false based on the response time.</p>
+
+            <h3>5. What's the password?</h3>
+            <p>To obtain the password we have to do is execute the exploit script. But the script from the exploit-db have a lot syntax error missing some decoding commands so i decide to search github repo for this exploit and found it from <a href="https://github.com/e-renna/CVE-2019-9053">e-renna</a></p>
+            <img class="blog-img" src="/src/blog/simple-ctf/9.png">
+            <p>looks like there is the flag for this script: -w for the wordlist -c for option to crack and -u to use the url. the result command is:</p>
+            <div class="bash">python3 exploit.py -u http://[TargetIP]/simple -c -w best110.txt</div>
+            <img class="blog-img" src="/src/blog/simple-ctf/7.png">
+            <p>At the first execution the email given seems oddly wrong, and the password seems hashed. i look back into the code and seems like nothing wrong probably the time to determined the true and false is incorrect so i adjust it.</p>
+            <img class="blog-img" src="/src/blog/simple-ctf/8.png">
+            <p>After a few times adjusting it, finally i got a convincing result at time 1.2. Also for this script the wordlist i use is from the hint of tryhackme so the cracking can be finished quickly.</p>
+            
+            <h3>6. Where can you login with the details obtained?</h3>
+            <p>The possible ways to login with these details that i can think is ssh, so let's try that</p>
+            <p class="bash">ssh -p 2222 mitch@[TargetIP]</p>
+            <p>the flag -p specify the ssh port that we wants to connect, from the nmap result before the ssh port is at 2222 therefore the value for flag -p is 2222</p>
+            <img class="blog-img" src="/src/blog/simple-ctf/10.png">
+            <p>After using the ssh command above and login with the cracked password, i successfully logged into the target computer as mitch</p>
+
+            <h3>7. What's the user flag?</h3>
+            <p>hmmmm let's see if there anything in this directory</p>
+            <img class="blog-img" src="/src/blog/simple-ctf/11.png">
+            <p>Aha seems like there is file called user.txt and inside it just a text said "G00d j0b, keep up!". this is most likely the user flag and yes it is.</p>
+
+            <h3>8. Is there any other user in the home directory? What's its name?</h3>
+            <p>Let's go back 1 directory from mitch home folder to look for another user</p>
+            <img class="blog-img" src="/src/blog/simple-ctf/12.png">
+            <p>Well there is another user named sunbath</p>
+
+            <h3>9. What can you leverage to spawn a privileged shell?</h3>
+            <p>Let's look for what command this user can run as root</p>
+            <img class="blog-img" src="/src/blog/simple-ctf/13.png">
+            <p>Looks like mitch can run vim with root permissions. So let's spawn a shell as root from vim. Following from this <a href="https://dev.to/mr_destructive/vim-terminal-integration-4pfp">blog</a> it seems like to execute a command from vim by typing :![command], so to spawn a shell we could use :!bash</p>
+            <img class="blog-img" src="/src/blog/simple-ctf/14.png">
+            <img class="blog-img" src="/src/blog/simple-ctf/15.png">
+            <p>now we can use the shell as root</p>
+
+            <h3>10. What's the root flag?</h3>
+            <img class="blog-img" src="/src/blog/simple-ctf/16.png">
+            <p>Let's take a look for the root home directory. Apparently there is a file called root.txt contain text "W3ll d0n3. You made it!" so it is the root flag</p>
+        </div>
+    </div>
+</body>
+</html>
